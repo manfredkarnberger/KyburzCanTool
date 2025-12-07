@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj": {}
+    "R:\\KyburzCanTool\\KyburzCanTool.csproj": {}
   },
   "projects": {
-    "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj": {
+    "R:\\KyburzCanTool\\KyburzCanTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
+        "projectUniqueName": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
         "projectName": "KyburzCanTool",
-        "projectPath": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
+        "projectPath": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
         "packagesPath": "C:\\Users\\Manfred\\.nuget\\packages\\",
-        "outputPath": "D:\\ws_VisualStudio\\KyburzCanTool\\obj\\",
+        "outputPath": "R:\\KyburzCanTool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages"

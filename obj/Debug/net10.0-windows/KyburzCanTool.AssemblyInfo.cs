@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KyburzCanTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30c6ae805d8d35a9cd2ffb557199e46870411fc5")]
 [assembly: System.Reflection.AssemblyProductAttribute("KyburzCanTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KyburzCanTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,34 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\ws_VisualStudio\\KyburzCanTool\\",
+  "WorkspaceRootPath": "R:\\KyburzCanTool\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40FA8209-EA41-4394-89C0-940E12AE4CB1}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,54 +38,52 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "RelayCommand.cs",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\RelayCommand.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\RelayCommand.cs",
               "RelativeDocumentMoniker": "RelayCommand.cs",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\RelayCommand.cs",
+              "ToolTip": "R:\\KyburzCanTool\\RelayCommand.cs",
               "RelativeToolTip": "RelayCommand.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAwwCIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T19:10:14.067Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T19:10:14.067Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "PCANBasic.cs",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\PCANBasic.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\PCANBasic.cs",
               "RelativeDocumentMoniker": "PCANBasic.cs",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\PCANBasic.cs",
+              "ToolTip": "R:\\KyburzCanTool\\PCANBasic.cs",
               "RelativeToolTip": "PCANBasic.cs",
-              "ViewState": "AgIAAJMCAAAAAAAAAAAwwKICAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAC0CAAAAAAAAAAAiwKICAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-07T19:04:03.396Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CanMessage.cs",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\CanMessage.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\CanMessage.cs",
               "RelativeDocumentMoniker": "CanMessage.cs",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\CanMessage.cs",
+              "ToolTip": "R:\\KyburzCanTool\\CanMessage.cs",
               "RelativeToolTip": "CanMessage.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAAwDIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T15:48:18.788Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-07T15:48:18.788Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "DatabaseHelper.cs",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\DatabaseHelper.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "DatabaseHelper.cs",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\DatabaseHelper.cs",
+              "ToolTip": "R:\\KyburzCanTool\\DatabaseHelper.cs",
               "RelativeToolTip": "DatabaseHelper.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAiwCkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -94,24 +92,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainViewModel.cs",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\MainViewModel.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\MainViewModel.cs",
               "RelativeDocumentMoniker": "MainViewModel.cs",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\MainViewModel.cs",
+              "ToolTip": "R:\\KyburzCanTool\\MainViewModel.cs",
               "RelativeToolTip": "MainViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAPYAAAAAAAAAAAASwAUBAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-07T15:12:08.612Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml",
+              "DocumentMoniker": "R:\\KyburzCanTool\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml",
+              "ToolTip": "R:\\KyburzCanTool\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-12-07T15:10:45.391Z",
@@ -119,13 +117,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml.cs",
+              "ToolTip": "R:\\KyburzCanTool\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAASwBQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-07T15:10:44.708Z",
               "EditorCaption": ""

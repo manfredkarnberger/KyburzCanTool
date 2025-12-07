@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "umv8vhHSIgQ=",
+  "dgSpecHash": "jx57ieUJV8M=",
   "success": true,
-  "projectFilePath": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
+  "projectFilePath": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Manfred\\.nuget\\packages\\microsoft.data.sqlite\\10.0.0\\microsoft.data.sqlite.10.0.0.nupkg.sha512",
     "C:\\Users\\Manfred\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.0\\microsoft.data.sqlite.core.10.0.0.nupkg.sha512",

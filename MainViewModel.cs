@@ -11,15 +11,22 @@ using System.Windows;
 
 namespace KyburzCanTool
 {
+    // Die RelayCommand-Klassen müssen hier oder in separaten Dateien definiert sein,
+    // falls sie nicht im globalen Namespace liegen.
+    // public class RelayCommand { ... }
+
     public class MainViewModel : INotifyPropertyChanged
     {
         // --------------------------------------------------------------------------------
         // EIGENSCHAFTEN UND FELDER
         // --------------------------------------------------------------------------------
 
+        // Listen
         public ObservableCollection<CommandSet> AvailableCommands { get; set; }
-        public ObservableCollection<CanMessage> CanLogMessages { get; set; }
+        public ObservableCollection<CanMessage> CanLogMessages { get; set; } // TX-Liste
+        public ObservableCollection<CanMessage> RxMessages { get; set; }     // RX-Liste
 
+        // Steuerung
         private CommandSet _selectedCommand;
         public CommandSet SelectedCommand
         {
@@ -28,7 +35,6 @@ namespace KyburzCanTool
             {
                 if (_selectedCommand != value)
                 {
-                    // Stoppt den aktuell laufenden Command beim Wechsel
                     if (_selectedCommand != null && _activeTxTokens.ContainsKey(_selectedCommand.Command))
                     {
                         StopCommandExecution(_selectedCommand);
@@ -36,19 +42,51 @@ namespace KyburzCanTool
 
                     _selectedCommand = value;
                     OnPropertyChanged(nameof(SelectedCommand));
-                    CommandManager.InvalidateRequerySuggested(); // Aktualisiert Button-Status
+                    CommandManager.InvalidateRequerySuggested();
                 }
             }
         }
 
-        // Dictionary zur Verwaltung der aktiven Sende-Tasks (mit Cancel-Token)
+        // LED-Steuerung
+        private bool _isTxActiveLight;
+        public bool IsTxActiveLight
+        {
+            get => _isTxActiveLight;
+            set
+            {
+                if (_isTxActiveLight != value)
+                {
+                    _isTxActiveLight = value;
+                    OnPropertyChanged(nameof(IsTxActiveLight));
+                }
+            }
+        }
+
+        private bool _isRxActiveLight;
+        public bool IsRxActiveLight
+        {
+            get => _isRxActiveLight;
+            set
+            {
+                if (_isRxActiveLight != value)
+                {
+                    _isRxActiveLight = value;
+                    OnPropertyChanged(nameof(IsRxActiveLight));
+                }
+            }
+        }
+
+        // Interne Felder
         private readonly Dictionary<string, CancellationTokenSource> _activeTxTokens =
             new Dictionary<string, CancellationTokenSource>();
 
-        private readonly ushort _channel = PCANBasic.PCAN_USBBUS1; // CAN-Kanal
-        private readonly TPCANBaudrate _baudrate = TPCANBaudrate.PCAN_BAUD_125K; // CAN-Baudrate
+        private readonly Dictionary<int, DateTime> _lastRxTime = new Dictionary<int, DateTime>();
 
-        private readonly DispatcherTimer _uiUpdateTimer;
+        private readonly ushort _channel = PCANBasic.PCAN_USBBUS1;
+        private readonly TPCANBaudrate _baudrate = TPCANBaudrate.PCAN_BAUD_125K;
+
+        private readonly DispatcherTimer _txUpdateTimer;
+        private readonly DispatcherTimer _rxUpdateTimer;
         private CancellationTokenSource _rxCancellationTokenSource;
 
         public ICommand StartCommand { get; }
@@ -60,12 +98,13 @@ namespace KyburzCanTool
 
         public MainViewModel()
         {
-            // 1. Initialisierung der DB und Laden der Daten
+            // 1. Initialisierung der Daten
             DatabaseHelper.InitializeDatabase();
             var loadedCommands = DatabaseHelper.LoadCommandSets();
 
             AvailableCommands = new ObservableCollection<CommandSet>(loadedCommands);
             CanLogMessages = new ObservableCollection<CanMessage>();
+            RxMessages = new ObservableCollection<CanMessage>();
 
             // 2. PCAN INITIALISIERUNG
             TPCANStatus status = PCANBasic.Initialize(_channel, _baudrate);
@@ -79,40 +118,28 @@ namespace KyburzCanTool
                 Debug.WriteLine("PCAN-USB erfolgreich initialisiert.");
             }
 
-            // 3. RX-Nachrichten zur Log-Liste hinzufügen (einmalig)
-            foreach (var cmd in loadedCommands)
-            {
-                foreach (var msg in cmd.MessagesToSend.Where(m => m.RxTX == "RX"))
-                {
-                    var logMsg = new CanMessage
-                    {
-                        CanID = msg.CanID,
-                        DLC = msg.DLC,
-                        RxTX = msg.RxTX,
-                        Comment = msg.Comment,
-                        ReceivedPayload = "--- Waiting ---",
-                        RxTime = "N/A"
-                    };
-                    CanLogMessages.Add(logMsg);
-                }
-            }
-
-            // 4. Initialisierung der Commands für die Buttons
+            // 3. Initialisierung der Commands
             StartCommand = new RelayCommand(StartCommandExecution, CanStartCommandExecute);
             StopCommand = new RelayCommand(StopCommandExecution, CanStopCommandExecute);
 
-            // 5. Starten des RX-Threads
+            // 4. Starten des RX-Threads
             StartCanReceiveThread();
 
-            // 6. Starten des UI-Update-Timers
-            _uiUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            _uiUpdateTimer.Interval = TimeSpan.FromMilliseconds(500); // 2x pro Sekunde
-            _uiUpdateTimer.Tick += UiUpdateTimer_Tick;
-            _uiUpdateTimer.Start();
+            // 5. Starten des TX UI-Update-Timers (für LoopCounts und LED-Aus-Schalten)
+            _txUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            _txUpdateTimer.Interval = TimeSpan.FromMilliseconds(200);
+            _txUpdateTimer.Tick += TxUpdateTimer_Tick;
+            _txUpdateTimer.Start();
+
+            // 6. Starten des RX UI-Update-Timers (für langsame RX-Aktualisierung und Sortierung)
+            _rxUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            _rxUpdateTimer.Interval = TimeSpan.FromMilliseconds(500);
+            _rxUpdateTimer.Tick += RxUpdateTimer_Tick;
+            _rxUpdateTimer.Start();
         }
 
         // --------------------------------------------------------------------------------
-        // COMMAND-LOGIK (Start/Stop Buttons)
+        // COMMAND-LOGIK
         // --------------------------------------------------------------------------------
 
         private bool CanStartCommandExecute()
@@ -127,10 +154,8 @@ namespace KyburzCanTool
             StartCanTransmitThread(SelectedCommand);
             CommandManager.InvalidateRequerySuggested();
 
-            // Fügen Sie die TX-Nachrichten zum Log hinzu, wenn sie gestartet werden
             foreach (var msg in SelectedCommand.MessagesToSend.Where(m => m.RxTX == "TX"))
             {
-                // Nur hinzufügen, wenn noch nicht im Log
                 if (!CanLogMessages.Contains(msg))
                 {
                     Application.Current.Dispatcher.Invoke(() => CanLogMessages.Add(msg));
@@ -146,12 +171,10 @@ namespace KyburzCanTool
         private void StopCommandExecution()
         {
             if (SelectedCommand == null) return;
-
             StopCanTransmitThread(SelectedCommand.Command);
             CommandManager.InvalidateRequerySuggested();
         }
 
-        // Überladene Version für implizite Stopp-Logik
         private void StopCommandExecution(CommandSet commandSet)
         {
             StopCanTransmitThread(commandSet.Command);
@@ -159,7 +182,7 @@ namespace KyburzCanTool
         }
 
         // --------------------------------------------------------------------------------
-        // TX-LOGIK (Senden)
+        // TX-LOGIK
         // --------------------------------------------------------------------------------
 
         private void StartCanTransmitThread(CommandSet commandSet)
@@ -168,10 +191,8 @@ namespace KyburzCanTool
 
             var txCancellationTokenSource = new CancellationTokenSource();
 
-            // Starte einen Task für das Senden
             Task.Run(() => CanTransmitWorker(commandSet, txCancellationTokenSource.Token), txCancellationTokenSource.Token);
 
-            // Speichern des Tokens, um den Task später abbrechen zu können
             _activeTxTokens.Add(commandSet.Command, txCancellationTokenSource);
 
             Debug.WriteLine($"TX Worker gestartet für: {commandSet.Command}");
@@ -181,12 +202,11 @@ namespace KyburzCanTool
         {
             if (_activeTxTokens.TryGetValue(command, out var source))
             {
-                source.Cancel(); // Token abbrechen
+                source.Cancel();
                 _activeTxTokens.Remove(command);
 
                 Debug.WriteLine($"TX Worker gestoppt für: {command}");
 
-                // Optional: Die TX-Nachrichten aus dem Log entfernen
                 var msgsToRemove = CanLogMessages.Where(m => m.Command == command && m.RxTX == "TX").ToList();
                 foreach (var msg in msgsToRemove)
                 {
@@ -212,9 +232,9 @@ namespace KyburzCanTool
 
                 foreach (var msg in txMessages)
                 {
-                    if (msg.LoopCount != -2) // -2 bedeutet "Abgeschlossen"
+                    if (msg.LoopCount != -2)
                     {
-                        allFinished = false; // Mindestens eine Nachricht muss noch gesendet werden
+                        allFinished = false;
 
                         if (msg.CycleTime > 0 && (now - lastSentTime[msg.GetHashCode()]).TotalMilliseconds >= msg.CycleTime)
                         {
@@ -226,7 +246,6 @@ namespace KyburzCanTool
                                 pcanMsg.LEN = msg.DLC;
                                 pcanMsg.DATA = new byte[8];
 
-                                // Die Payload aus dem Message-Objekt in die TPCANMsg.DATA Struktur kopieren
                                 for (int i = 0; i < msg.DLC && i < 8; i++)
                                 {
                                     pcanMsg.DATA[i] = msg.Payload[i];
@@ -239,26 +258,21 @@ namespace KyburzCanTool
 
                                 if (status == TPCANStatus.PCAN_ERROR_OK)
                                 {
-                                    Debug.WriteLine($"SENT: ID={msg.CanID:X3}, Command={msg.Command}, Loop={msg.LoopCount}");
+                                    // LED EINSCHALTEN
+                                    Application.Current.Dispatcher.Invoke(() => IsTxActiveLight = true);
                                 }
                                 else
                                 {
                                     Debug.WriteLine($"SEND ERROR: ID={msg.CanID:X3}, Status={status}");
                                 }
 
-                                // LoopCount dekrementieren und UI-Update triggern
                                 if (msg.LoopCount > 0)
                                 {
                                     msg.LoopCount--;
                                     Application.Current.Dispatcher.Invoke(() => msg.OnPropertyChanged(nameof(CanMessage.LoopCount)));
                                 }
-                                else if (msg.LoopCount == 0)
+                                else if (msg.LoopCount < 0)
                                 {
-                                    // Wenn LoopCount 0 war (immer senden), bleibt es 0
-                                }
-                                else
-                                {
-                                    // Wenn der Zähler abgelaufen ist
                                     msg.LoopCount = -2;
                                 }
                             }
@@ -268,18 +282,16 @@ namespace KyburzCanTool
 
                 if (allFinished)
                 {
-                    // Alle zyklischen Nachrichten sind abgelaufen (falls LoopCount > 0 war)
                     Application.Current.Dispatcher.Invoke(() => StopCommandExecution(commandSet));
                     return;
                 }
 
-                // Warten, um die CPU zu entlasten (Poll-Interval)
                 await Task.Delay(1);
             }
         }
 
         // --------------------------------------------------------------------------------
-        // RX-LOGIK (Empfangen)
+        // RX-LOGIK
         // --------------------------------------------------------------------------------
 
         private void StartCanReceiveThread()
@@ -295,62 +307,111 @@ namespace KyburzCanTool
 
             while (!token.IsCancellationRequested)
             {
-                // Versuche, eine Nachricht zu lesen
                 TPCANStatus status = PCANBasic.Read(_channel, out pcanMsg, out timestamp);
 
                 if (status == TPCANStatus.PCAN_ERROR_OK)
                 {
-                    // Nachricht erfolgreich empfangen
                     int receivedID = (int)pcanMsg.ID;
                     byte[] receivedData = pcanMsg.DATA;
+                    DateTime currentTime = DateTime.Now;
 
-                    var logEntry = CanLogMessages.FirstOrDefault(m => m.CanID == receivedID && m.RxTX == "RX");
-
-                    if (logEntry != null)
+                    // 1. Berechnung der Zykluszeit
+                    int calculatedCycleTimeMs = 0;
+                    if (_lastRxTime.ContainsKey(receivedID))
                     {
-                        // Aktualisieren Sie die Daten im UI-Thread
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            logEntry.ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " ");
-                            logEntry.RxTime = DateTime.Now.ToString("HH:mm:ss.fff");
-                            Debug.WriteLine($"RECEIVED: ID={receivedID:X3}");
-                        });
+                        calculatedCycleTimeMs = (int)(currentTime - _lastRxTime[receivedID]).TotalMilliseconds;
                     }
+                    _lastRxTime[receivedID] = currentTime;
+
+                    // 2. Suche oder Erstellung des Listeneintrags
+                    var rxEntry = RxMessages.FirstOrDefault(m => m.CanID == receivedID);
+
+                    if (rxEntry == null)
+                    {
+                        rxEntry = new CanMessage
+                        {
+                            CanID = receivedID,
+                            RxTX = "RX",
+                            Comment = "Dynamisch empfangen",
+                            DLC = pcanMsg.LEN,
+                            ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " "),
+                            RxTime = currentTime.ToString("HH:mm:ss.fff"),
+                            CycleTime = calculatedCycleTimeMs
+                        };
+
+                        Application.Current.Dispatcher.Invoke(() => RxMessages.Add(rxEntry));
+                    }
+                    else
+                    {
+                        // 3. Nur die Daten des bestehenden Eintrags aktualisieren
+                        rxEntry.DLC = pcanMsg.LEN;
+                        rxEntry.ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " ");
+                        rxEntry.RxTime = currentTime.ToString("HH:mm:ss.fff");
+                        rxEntry.CycleTime = calculatedCycleTimeMs;
+                    }
+
+                    // LED EINSCHALTEN
+                    Application.Current.Dispatcher.Invoke(() => IsRxActiveLight = true);
                 }
-                else if (status == TPCANStatus.PCAN_ERROR_QRCVEMPTY)
+                else if (status != TPCANStatus.PCAN_ERROR_QRCVEMPTY)
                 {
-                    // Keine Nachrichten in der Queue, einfach fortfahren
-                }
-                else
-                {
-                    // Fehler beim Lesen, zur Diagnose ausgeben
                     Debug.WriteLine($"CAN Read Error: {status}");
                 }
 
-                // Kurze Verzögerung, um die CPU nicht zu überlasten
                 await Task.Delay(1);
             }
         }
 
         // --------------------------------------------------------------------------------
-        // AUFRÄUMEN UND UI-UPDATE
+        // UI-UPDATE LOGIK (Timer)
         // --------------------------------------------------------------------------------
 
-        private void UiUpdateTimer_Tick(object sender, EventArgs e)
+        private void TxUpdateTimer_Tick(object sender, EventArgs e)
         {
-            // Erzwingt ein UI-Update für RX-Nachrichten (2x/sek), um die Zeit und Payload zu zeigen
-            foreach (var msg in CanLogMessages.Where(m => m.RxTX == "RX"))
+            // Aktualisiert die LoopCounts im TX DataGrid
+            foreach (var msg in CanLogMessages)
+            {
+                msg.OnPropertyChanged(nameof(CanMessage.LoopCount));
+            }
+
+            // LED-Steuerung (Schaltet die Lichter nach 200ms wieder aus = Blinken)
+            if (IsTxActiveLight) IsTxActiveLight = false;
+            if (IsRxActiveLight) IsRxActiveLight = false;
+        }
+
+        private void RxUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            // Führt das langsame UI-Update und die Sortierung durch
+
+            // 1. Aktualisierung der Datenbindung für die Anzeige
+            foreach (var msg in RxMessages)
             {
                 msg.OnPropertyChanged(nameof(CanMessage.CurrentPayloadString));
                 msg.OnPropertyChanged(nameof(CanMessage.RxTime));
+                msg.OnPropertyChanged(nameof(CanMessage.CycleTime));
+            }
+
+            // 2. Sortierung der RxMessages nach CanID
+            var sortedList = RxMessages.OrderBy(m => m.CanID).ToList();
+
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                if (RxMessages.IndexOf(sortedList[i]) != i)
+                {
+                    RxMessages.Move(RxMessages.IndexOf(sortedList[i]), i);
+                }
             }
         }
 
-        // Wird beim Schließen der Anwendung aufgerufen (durch MainWindow.xaml.cs)
+        // --------------------------------------------------------------------------------
+        // AUFRÄUMEN
+        // --------------------------------------------------------------------------------
+
         public void Cleanup()
         {
             _rxCancellationTokenSource?.Cancel();
-            _uiUpdateTimer.Stop();
+            _txUpdateTimer.Stop();
+            _rxUpdateTimer.Stop();
 
             // Deinitialisierung des CAN-Adapters
             PCANBasic.Uninitialize(_channel);

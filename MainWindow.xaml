@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:KyburzCanTool"
         mc:Ignorable="d"
-        Title="Kyburz Canbus Tool" Height="450" Width="800">
+        Title="Kyburz Canbus Tool" Height="600" Width="1000">
 
     <Window.DataContext>
         <local:MainViewModel/>
@@ -15,6 +15,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -40,22 +41,73 @@
             </StackPanel>
         </GroupBox>
 
-        <DataGrid Grid.Row="1" 
+        <GroupBox Header="TX Can Messages" Grid.Row="1" Margin="10,0,10,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,0,10,5" HorizontalAlignment="Left">
+                    <TextBlock Text="TX Traffic Active:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
+                    <!--<Ellipse Height="15" Width="15" Stroke="Black" StrokeThickness="1">
+                        <Ellipse.Fill>
+                            <Binding Path="IsTxActiveLight" Converter="{StaticResource BoolToColorConverter}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>-->
+                </StackPanel>
+
+                <DataGrid Grid.Row="1" 
                   ItemsSource="{Binding CanLogMessages}" 
                   AutoGenerateColumns="False" 
                   IsReadOnly="True"
                   Margin="10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Rx/Tx" Binding="{Binding RxTX}" Width="50"/>
-                <DataGridTextColumn Header="Command" Binding="{Binding Command}" Width="100"/>
-                <DataGridTextColumn Header="CAN ID" Binding="{Binding CanID, StringFormat=X3}" Width="70"/>
-                <DataGridTextColumn Header="DLC" Binding="{Binding DLC}" Width="50"/>
-                <DataGridTextColumn Header="Payload (Data)" Binding="{Binding CurrentPayloadString}" Width="*"/>
-                <DataGridTextColumn Header="CycleTime [ms]" Binding="{Binding CycleTime}" Width="100"/>
-                <DataGridTextColumn Header="Remaining Loops" Binding="{Binding LoopCount}" Width="100"/>
-                <DataGridTextColumn Header="Last RX Time" Binding="{Binding RxTime}" Width="100"/>
-                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Rx/Tx" Binding="{Binding RxTX}" Width="50"/>
+                        <DataGridTextColumn Header="Command" Binding="{Binding Command}" Width="100"/>
+                        <DataGridTextColumn Header="CAN ID" Binding="{Binding CanID, StringFormat=X3}" Width="70"/>
+                        <DataGridTextColumn Header="DLC" Binding="{Binding DLC}" Width="50"/>
+                        <DataGridTextColumn Header="Payload (Data)" Binding="{Binding CurrentPayloadString}" Width="*"/>
+                        <DataGridTextColumn Header="CycleTime [ms]" Binding="{Binding CycleTime}" Width="100"/>
+                        <DataGridTextColumn Header="Remaining Loops" Binding="{Binding LoopCount}" Width="100"/>
+                        <DataGridTextColumn Header="Last RX Time" Binding="{Binding RxTime}" Width="100"/>
+                        <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="RX Can Messages" Grid.Row="2" Margin="10,0,10,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,0,10,5" HorizontalAlignment="Left">
+                    <TextBlock Text="RX Traffic Active:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
+                    <!--<Ellipse Height="15" Width="15" Stroke="Black" StrokeThickness="1">
+                        <Ellipse.Fill>
+                            <Binding Path="IsRxActiveLight" Converter="{StaticResource BoolToColorConverter}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>-->
+                </StackPanel>
+
+                <DataGrid ItemsSource="{Binding RxMessages}" 
+                Grid.Row="1"
+                AutoGenerateColumns="False" 
+                IsReadOnly="True"
+                HeadersVisibility="Column"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="CAN ID" Binding="{Binding CanID, StringFormat=X3}" Width="80"/>
+                        <DataGridTextColumn Header="DLC" Binding="{Binding DLC}" Width="50"/>
+                        <DataGridTextColumn Header="Payload (Data)" Binding="{Binding CurrentPayloadString}" Width="*"/>
+                        <DataGridTextColumn Header="Cycle Time [ms]" Binding="{Binding CycleTime}" Width="120"/>
+                        <DataGridTextColumn Header="Last RX Time" Binding="{Binding RxTime}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
