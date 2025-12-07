@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "R:\\KyburzCanTool\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +42,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
+              "Title": "BooleanToColorConverter.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\BooleanToColorConverter.cs",
+              "RelativeDocumentMoniker": "BooleanToColorConverter.cs",
+              "ToolTip": "R:\\KyburzCanTool\\BooleanToColorConverter.cs",
+              "RelativeToolTip": "BooleanToColorConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T21:10:36.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "RelayCommand.cs",
               "DocumentMoniker": "R:\\KyburzCanTool\\RelayCommand.cs",
               "RelativeDocumentMoniker": "RelayCommand.cs",
@@ -54,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "PCANBasic.cs",
               "DocumentMoniker": "R:\\KyburzCanTool\\PCANBasic.cs",
               "RelativeDocumentMoniker": "PCANBasic.cs",
@@ -67,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CanMessage.cs",
               "DocumentMoniker": "R:\\KyburzCanTool\\CanMessage.cs",
               "RelativeDocumentMoniker": "CanMessage.cs",
@@ -79,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "R:\\KyburzCanTool\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "DatabaseHelper.cs",
@@ -92,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "R:\\KyburzCanTool\\MainViewModel.cs",
               "RelativeDocumentMoniker": "MainViewModel.cs",
@@ -105,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "R:\\KyburzCanTool\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
