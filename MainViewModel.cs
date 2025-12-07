@@ -11,10 +11,6 @@ using System.Windows;
 
 namespace KyburzCanTool
 {
-    // Die RelayCommand-Klassen müssen hier oder in separaten Dateien definiert sein,
-    // falls sie nicht im globalen Namespace liegen.
-    // public class RelayCommand { ... }
-
     public class MainViewModel : INotifyPropertyChanged
     {
         // --------------------------------------------------------------------------------
@@ -127,13 +123,13 @@ namespace KyburzCanTool
 
             // 5. Starten des TX UI-Update-Timers (für LoopCounts und LED-Aus-Schalten)
             _txUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            _txUpdateTimer.Interval = TimeSpan.FromMilliseconds(250);
+            _txUpdateTimer.Interval = TimeSpan.FromMilliseconds(200);
             _txUpdateTimer.Tick += TxUpdateTimer_Tick;
             _txUpdateTimer.Start();
 
             // 6. Starten des RX UI-Update-Timers (für langsame RX-Aktualisierung und Sortierung)
             _rxUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            _rxUpdateTimer.Interval = TimeSpan.FromMilliseconds(250);
+            _rxUpdateTimer.Interval = TimeSpan.FromMilliseconds(500);
             _rxUpdateTimer.Tick += RxUpdateTimer_Tick;
             _rxUpdateTimer.Start();
         }
@@ -191,7 +187,8 @@ namespace KyburzCanTool
 
             var txCancellationTokenSource = new CancellationTokenSource();
 
-            Task.Run(() => CanTransmitWorker(commandSet, txCancellationTokenSource.Token), txCancellationTokenSource.Token);
+            // Korrektur: Task.Run OHNE das Token als zweiten Parameter, um die TaskCanceledException zu vermeiden
+            Task.Run(() => CanTransmitWorker(commandSet, txCancellationTokenSource.Token));
 
             _activeTxTokens.Add(commandSet.Command, txCancellationTokenSource);
 
@@ -210,7 +207,11 @@ namespace KyburzCanTool
                 var msgsToRemove = CanLogMessages.Where(m => m.Command == command && m.RxTX == "TX").ToList();
                 foreach (var msg in msgsToRemove)
                 {
-                    Application.Current.Dispatcher.Invoke(() => CanLogMessages.Remove(msg));
+                    // Auch beim Entfernen: Prüfung auf existierende App
+                    if (Application.Current != null)
+                    {
+                        Application.Current.Dispatcher.Invoke(() => CanLogMessages.Remove(msg));
+                    }
                 }
             }
         }
@@ -225,68 +226,89 @@ namespace KyburzCanTool
                 lastSentTime[msg.GetHashCode()] = DateTime.MinValue;
             }
 
-            while (!token.IsCancellationRequested)
+            try
             {
-                var now = DateTime.Now;
-                bool allFinished = true;
-
-                foreach (var msg in txMessages)
+                while (!token.IsCancellationRequested)
                 {
-                    if (msg.LoopCount != -2)
+                    var now = DateTime.Now;
+                    bool allFinished = true;
+
+                    foreach (var msg in txMessages)
                     {
-                        allFinished = false;
-
-                        if (msg.CycleTime > 0 && (now - lastSentTime[msg.GetHashCode()]).TotalMilliseconds >= msg.CycleTime)
+                        if (msg.LoopCount != -2)
                         {
-                            if (msg.LoopCount == 0 || msg.LoopCount > 0)
+                            allFinished = false;
+
+                            if (msg.CycleTime > 0 && (now - lastSentTime[msg.GetHashCode()]).TotalMilliseconds >= msg.CycleTime)
                             {
-                                // --- PCAN SEND LOGIK ---
-                                TPCANMsg pcanMsg = new TPCANMsg();
-                                pcanMsg.ID = (uint)msg.CanID;
-                                pcanMsg.LEN = msg.DLC;
-                                pcanMsg.DATA = new byte[8];
-
-                                for (int i = 0; i < msg.DLC && i < 8; i++)
+                                if (msg.LoopCount == 0 || msg.LoopCount > 0)
                                 {
-                                    pcanMsg.DATA[i] = msg.Payload[i];
-                                }
+                                    // --- PCAN SEND LOGIK ---
+                                    TPCANMsg pcanMsg = new TPCANMsg();
+                                    pcanMsg.ID = (uint)msg.CanID;
+                                    pcanMsg.LEN = msg.DLC;
+                                    pcanMsg.DATA = new byte[8];
+                                    for (int i = 0; i < msg.DLC && i < 8; i++)
+                                    {
+                                        pcanMsg.DATA[i] = msg.Payload[i];
+                                    }
 
-                                TPCANStatus status = PCANBasic.Write(_channel, ref pcanMsg);
-                                // -----------------------
+                                    TPCANStatus status = PCANBasic.Write(_channel, ref pcanMsg);
+                                    // -----------------------
 
-                                lastSentTime[msg.GetHashCode()] = now;
+                                    lastSentTime[msg.GetHashCode()] = now;
 
-                                if (status == TPCANStatus.PCAN_ERROR_OK)
-                                {
-                                    // LED EINSCHALTEN
-                                    Application.Current.Dispatcher.Invoke(() => IsTxActiveLight = true);
-                                }
-                                else
-                                {
-                                    Debug.WriteLine($"SEND ERROR: ID={msg.CanID:X3}, Status={status}");
-                                }
+                                    if (status == TPCANStatus.PCAN_ERROR_OK)
+                                    {
+                                        // LED EINSCHALTEN - Doppelte Sicherung gegen Task-Abbruch und NullReference
+                                        if (!token.IsCancellationRequested && Application.Current != null)
+                                        {
+                                            Application.Current.Dispatcher.Invoke(() => IsTxActiveLight = true);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.WriteLine($"SEND ERROR: ID={msg.CanID:X3}, Status={status}");
+                                    }
 
-                                if (msg.LoopCount > 0)
-                                {
-                                    msg.LoopCount--;
-                                    Application.Current.Dispatcher.Invoke(() => msg.OnPropertyChanged(nameof(CanMessage.LoopCount)));
-                                }
-                                else if (msg.LoopCount < 0)
-                                {
-                                    msg.LoopCount = -2;
+                                    if (msg.LoopCount > 0)
+                                    {
+                                        msg.LoopCount--;
+                                        // LoopCount Update - Doppelte Sicherung
+                                        if (!token.IsCancellationRequested && Application.Current != null)
+                                        {
+                                            Application.Current.Dispatcher.Invoke(() => msg.OnPropertyChanged(nameof(CanMessage.LoopCount)));
+                                        }
+                                    }
+                                    else if (msg.LoopCount < 0)
+                                    {
+                                        msg.LoopCount = -2;
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                if (allFinished)
-                {
-                    Application.Current.Dispatcher.Invoke(() => StopCommandExecution(commandSet));
-                    return;
-                }
+                    if (allFinished)
+                    {
+                        // Stoppen des Kommandos - Doppelte Sicherung
+                        if (Application.Current != null)
+                        {
+                            Application.Current.Dispatcher.Invoke(() => StopCommandExecution(commandSet));
+                        }
+                        return;
+                    }
 
-                await Task.Delay(1);
+                    await Task.Delay(1);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                // Fängt den sauberen Abbruch ab
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unerwarteter Fehler im TX Worker: {ex.Message}");
             }
         }
 
@@ -297,6 +319,7 @@ namespace KyburzCanTool
         private void StartCanReceiveThread()
         {
             _rxCancellationTokenSource = new CancellationTokenSource();
+            // Startet Task OHNE explizite Überwachung durch das Token
             Task.Run(() => CanReceiveWorker(_rxCancellationTokenSource.Token));
         }
 
@@ -305,60 +328,78 @@ namespace KyburzCanTool
             TPCANMsg pcanMsg;
             TPCANTimestamp timestamp;
 
-            while (!token.IsCancellationRequested)
+            try
             {
-                TPCANStatus status = PCANBasic.Read(_channel, out pcanMsg, out timestamp);
-
-                if (status == TPCANStatus.PCAN_ERROR_OK)
+                while (!token.IsCancellationRequested)
                 {
-                    int receivedID = (int)pcanMsg.ID;
-                    byte[] receivedData = pcanMsg.DATA;
-                    DateTime currentTime = DateTime.Now;
+                    TPCANStatus status = PCANBasic.Read(_channel, out pcanMsg, out timestamp);
 
-                    // 1. Berechnung der Zykluszeit
-                    int calculatedCycleTimeMs = 0;
-                    if (_lastRxTime.ContainsKey(receivedID))
+                    if (status == TPCANStatus.PCAN_ERROR_OK)
                     {
-                        calculatedCycleTimeMs = (int)(currentTime - _lastRxTime[receivedID]).TotalMilliseconds;
-                    }
-                    _lastRxTime[receivedID] = currentTime;
+                        int receivedID = (int)pcanMsg.ID;
+                        byte[] receivedData = pcanMsg.DATA;
+                        DateTime currentTime = DateTime.Now;
 
-                    // 2. Suche oder Erstellung des Listeneintrags
-                    var rxEntry = RxMessages.FirstOrDefault(m => m.CanID == receivedID);
-
-                    if (rxEntry == null)
-                    {
-                        rxEntry = new CanMessage
+                        // 1. Berechnung der Zykluszeit
+                        int calculatedCycleTimeMs = 0;
+                        if (_lastRxTime.ContainsKey(receivedID))
                         {
-                            CanID = receivedID,
-                            RxTX = "RX",
-                            Comment = "Dynamisch empfangen",
-                            DLC = pcanMsg.LEN,
-                            ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " "),
-                            RxTime = currentTime.ToString("HH:mm:ss.fff"),
-                            CycleTime = calculatedCycleTimeMs
-                        };
+                            calculatedCycleTimeMs = (int)(currentTime - _lastRxTime[receivedID]).TotalMilliseconds;
+                        }
+                        _lastRxTime[receivedID] = currentTime;
 
-                        Application.Current.Dispatcher.Invoke(() => RxMessages.Add(rxEntry));
+                        // 2. Suche oder Erstellung des Listeneintrags
+                        var rxEntry = RxMessages.FirstOrDefault(m => m.CanID == receivedID);
+
+                        if (rxEntry == null)
+                        {
+                            rxEntry = new CanMessage
+                            {
+                                CanID = receivedID,
+                                RxTX = "RX",
+                                Comment = "Dynamisch empfangen",
+                                DLC = pcanMsg.LEN,
+                                ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " "),
+                                RxTime = currentTime.ToString("HH:mm:ss.fff"),
+                                CycleTime = calculatedCycleTimeMs
+                            };
+
+                            // Hinzufügen zum RX Log - Doppelte Sicherung
+                            if (!token.IsCancellationRequested && Application.Current != null)
+                            {
+                                Application.Current.Dispatcher.Invoke(() => RxMessages.Add(rxEntry));
+                            }
+                        }
+                        else
+                        {
+                            // 3. Nur die Daten des bestehenden Eintrags aktualisieren
+                            rxEntry.DLC = pcanMsg.LEN;
+                            rxEntry.ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " ");
+                            rxEntry.RxTime = currentTime.ToString("HH:mm:ss.fff");
+                            rxEntry.CycleTime = calculatedCycleTimeMs;
+                        }
+
+                        // LED EINSCHALTEN - Doppelte Sicherung
+                        if (!token.IsCancellationRequested && Application.Current != null)
+                        {
+                            Application.Current.Dispatcher.Invoke(() => IsRxActiveLight = true);
+                        }
                     }
-                    else
+                    else if (status != TPCANStatus.PCAN_ERROR_QRCVEMPTY)
                     {
-                        // 3. Nur die Daten des bestehenden Eintrags aktualisieren
-                        rxEntry.DLC = pcanMsg.LEN;
-                        rxEntry.ReceivedPayload = BitConverter.ToString(receivedData, 0, pcanMsg.LEN).Replace("-", " ");
-                        rxEntry.RxTime = currentTime.ToString("HH:mm:ss.fff");
-                        rxEntry.CycleTime = calculatedCycleTimeMs;
+                        Debug.WriteLine($"CAN Read Error: {status}");
                     }
 
-                    // LED EINSCHALTEN
-                    Application.Current.Dispatcher.Invoke(() => IsRxActiveLight = true);
+                    await Task.Delay(1);
                 }
-                else if (status != TPCANStatus.PCAN_ERROR_QRCVEMPTY)
-                {
-                    Debug.WriteLine($"CAN Read Error: {status}");
-                }
-
-                await Task.Delay(1);
+            }
+            catch (OperationCanceledException)
+            {
+                // Fängt den sauberen Abbruch ab
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unerwarteter Fehler im RX Worker: {ex.Message}");
             }
         }
 
