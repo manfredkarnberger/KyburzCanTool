@@ -1,0 +1,25 @@
+{
+  "runtimeOptions": {
+    "tfm": "net10.0",
+    "frameworks": [
+      {
+        "name": "Microsoft.NETCore.App",
+        "version": "10.0.0"
+      },
+      {
+        "name": "Microsoft.WindowsDesktop.App",
+        "version": "10.0.0"
+      }
+    ],
+    "additionalProbingPaths": [
+      "C:\\Users\\Manfred\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Manfred\\.nuget\\packages",
+      "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages"
+    ],
+    "configProperties": {
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false,
+      "CSWINRT_USE_WINDOWS_UI_XAML_PROJECTIONS": false,
+      "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
+    }
+  }
+}

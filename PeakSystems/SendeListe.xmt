@@ -1,0 +1,15 @@
+; D:\ws_VisualStudio\KyburzCanTool\PeakSystems\SendeListe.xmt
+;   CAN messages saved by PCAN-View v5.3.3.958
+;
+; Columns descriptions:
+; ~~~~~~~~~~~~~~~~~~~~~
+; +Message ID
+; |            +Cycle time in ms (0=manual)
+; |            |  +Data length
+; |            |  |  +Frame type
+; |            |  |  |  +Message data
+; |            |  |  |  |
+26Fh         100  8  D 00h 00h 00h 00h FFh FFh 00h 00h ; Speed
+270h         100  8  D 00h 00h 00h 00h 00h 00h 00h 02h ; Speed
+270h         100  8  D 00h 0Ch 08h 00h 00h 00h 00h 00h  Paused ; Video
+56Fh         100  8  D 00h 00h 00h 00h 00h FFh 00h 00h ; Speed
