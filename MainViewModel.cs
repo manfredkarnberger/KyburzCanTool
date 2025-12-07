@@ -127,13 +127,13 @@ namespace KyburzCanTool
 
             // 5. Starten des TX UI-Update-Timers (für LoopCounts und LED-Aus-Schalten)
             _txUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            _txUpdateTimer.Interval = TimeSpan.FromMilliseconds(200);
+            _txUpdateTimer.Interval = TimeSpan.FromMilliseconds(250);
             _txUpdateTimer.Tick += TxUpdateTimer_Tick;
             _txUpdateTimer.Start();
 
             // 6. Starten des RX UI-Update-Timers (für langsame RX-Aktualisierung und Sortierung)
             _rxUpdateTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            _rxUpdateTimer.Interval = TimeSpan.FromMilliseconds(500);
+            _rxUpdateTimer.Interval = TimeSpan.FromMilliseconds(250);
             _rxUpdateTimer.Tick += RxUpdateTimer_Tick;
             _rxUpdateTimer.Start();
         }

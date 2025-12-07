@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:KyburzCanTool"
         mc:Ignorable="d"
-        Title="Kyburz Canbus Tool" Height="600" Width="1000">
+        Title="Kyburz Canbus Tool" Height="600" Width="1000" Background="#1F1F1F">
 
     <Window.DataContext>
         <local:MainViewModel/>
@@ -23,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Command Selection and Control" Grid.Row="0" Margin="10">
+        <GroupBox Header="Command Selection and Control" Grid.Row="0" Margin="10,0,10,10" Foreground="White" BorderThickness="0.5">
             <StackPanel Orientation="Horizontal">
 
                 <ListBox ItemsSource="{Binding AvailableCommands}"
@@ -31,7 +31,7 @@
                          SelectedItem="{Binding SelectedCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Width="200"
                          Height="100"
-                         Margin="0,0,20,0"/>
+                         Margin="10"/>
 
                 <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <Button Content="▶ Start Selected Command" 
@@ -45,14 +45,14 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="TX Can Messages" Grid.Row="1" Margin="10,0,10,10">
+        <GroupBox Header="TX Can Messages" Grid.Row="1" Margin="10,0,10,10" Foreground="White" BorderThickness="0.5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,0,10,5" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,10,10,5" HorizontalAlignment="Left">
                     <TextBlock Text="TX Traffic Active:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
                     <Ellipse Height="15" Width="15" Stroke="Black" StrokeThickness="1">
                         <Ellipse.Fill>
@@ -81,14 +81,14 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="RX Can Messages" Grid.Row="2" Margin="10,0,10,10">
+        <GroupBox Header="RX Can Messages" Grid.Row="2" Margin="10,0,10,10" Foreground="White" BorderThickness="0.5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,0,10,5" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,10,10,5" HorizontalAlignment="Left">
                     <TextBlock Text="RX Traffic Active:" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
                     <Ellipse Height="15" Width="15" Stroke="Black" StrokeThickness="1">
                         <Ellipse.Fill>
@@ -102,7 +102,8 @@
                 AutoGenerateColumns="False" 
                 IsReadOnly="True"
                 HeadersVisibility="Column"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                Margin="10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="CAN ID" Binding="{Binding CanID, StringFormat=X3}" Width="80"/>
                         <DataGridTextColumn Header="DLC" Binding="{Binding DLC}" Width="50"/>
