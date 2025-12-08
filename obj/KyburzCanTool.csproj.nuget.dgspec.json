@@ -1,25 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "R:\\KyburzCanTool\\KyburzCanTool.csproj": {}
+    "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj": {}
   },
   "projects": {
-    "R:\\KyburzCanTool\\KyburzCanTool.csproj": {
+    "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
+        "projectUniqueName": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
         "projectName": "KyburzCanTool",
-        "projectPath": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
-        "packagesPath": "C:\\Users\\Manfred\\.nuget\\packages\\",
-        "outputPath": "R:\\KyburzCanTool\\obj\\",
+        "projectPath": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
+        "packagesPath": "C:\\Users\\manfr\\.nuget\\packages\\",
+        "outputPath": "D:\\ws_VisualStudio\\KyburzCanTool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages"
+          "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Syncfusion\\Essential Studio\\WPF\\28.1.33\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Manfred\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\manfr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Syncfusion Toolbox for WPF.config"
         ],
         "originalTargetFrameworks": [
           "net10.0-windows"
@@ -27,6 +31,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 25.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

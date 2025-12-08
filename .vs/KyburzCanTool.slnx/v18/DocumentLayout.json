@@ -1,42 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "R:\\KyburzCanTool\\",
+  "WorkspaceRootPath": "D:\\ws_VisualStudio\\KyburzCanTool\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\kyburzcantool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:kyburzcantool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:booleantocolorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\kyburzcantool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:kyburzcantool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:pcanbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|r:\\kyburzcantool\\canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|d:\\ws_visualstudio\\kyburzcantool\\canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F7F444F2-A367-1324-58A2-EBA1F33F7ED2}|KyburzCanTool.csproj|solutionrelative:canmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|R:\\KyburzCanTool\\BooleanToColorConverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -55,10 +58,23 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BooleanToColorConverter.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\BooleanToColorConverter.cs",
+              "RelativeDocumentMoniker": "BooleanToColorConverter.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\BooleanToColorConverter.cs",
+              "RelativeToolTip": "BooleanToColorConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T11:19:05.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "KyburzCanTool",
-              "DocumentMoniker": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
               "RelativeDocumentMoniker": "KyburzCanTool.csproj",
-              "ToolTip": "R:\\KyburzCanTool\\KyburzCanTool.csproj",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\KyburzCanTool.csproj",
               "RelativeToolTip": "KyburzCanTool.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-12-07T22:13:37.44Z",
@@ -66,71 +82,84 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BooleanToColorConverter.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\BooleanToColorConverter.cs",
-              "RelativeDocumentMoniker": "BooleanToColorConverter.cs",
-              "ToolTip": "R:\\KyburzCanTool\\BooleanToColorConverter.cs",
-              "RelativeToolTip": "BooleanToColorConverter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T21:10:36.451Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
               "Title": "RelayCommand.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\RelayCommand.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\RelayCommand.cs",
               "RelativeDocumentMoniker": "RelayCommand.cs",
-              "ToolTip": "R:\\KyburzCanTool\\RelayCommand.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\RelayCommand.cs",
               "RelativeToolTip": "RelayCommand.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAwwCIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T19:10:14.067Z"
+              "WhenOpened": "2025-12-07T19:10:14.067Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "PCANBasic.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\PCANBasic.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\PCANBasic.cs",
               "RelativeDocumentMoniker": "PCANBasic.cs",
-              "ToolTip": "R:\\KyburzCanTool\\PCANBasic.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\PCANBasic.cs",
               "RelativeToolTip": "PCANBasic.cs",
               "ViewState": "AgIAAC0CAAAAAAAAAAAiwKICAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T19:04:03.396Z"
+              "WhenOpened": "2025-12-07T19:04:03.396Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "CanMessage.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\CanMessage.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\CanMessage.cs",
               "RelativeDocumentMoniker": "CanMessage.cs",
-              "ToolTip": "R:\\KyburzCanTool\\CanMessage.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\CanMessage.cs",
               "RelativeToolTip": "CanMessage.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAAwDIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T15:48:18.788Z"
+              "WhenOpened": "2025-12-07T15:48:18.788Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "DatabaseHelper.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\DatabaseHelper.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "DatabaseHelper.cs",
-              "ToolTip": "R:\\KyburzCanTool\\DatabaseHelper.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\DatabaseHelper.cs",
               "RelativeToolTip": "DatabaseHelper.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAiwCkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T15:46:29.41Z"
+              "WhenOpened": "2025-12-07T15:46:29.41Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-07T15:10:45.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BooleanToColorConverter.cs",
+              "DocumentMoniker": "R:\\KyburzCanTool\\BooleanToColorConverter.cs",
+              "ToolTip": "R:\\KyburzCanTool\\BooleanToColorConverter.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T21:10:36.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MainViewModel.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\MainViewModel.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\MainViewModel.cs",
               "RelativeDocumentMoniker": "MainViewModel.cs",
-              "ToolTip": "R:\\KyburzCanTool\\MainViewModel.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\MainViewModel.cs",
               "RelativeToolTip": "MainViewModel.cs",
               "ViewState": "AgIAAO0AAAAAAAAAAAASwPkAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -139,26 +168,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "R:\\KyburzCanTool\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "R:\\KyburzCanTool\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-07T15:10:45.391Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "R:\\KyburzCanTool\\MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "R:\\KyburzCanTool\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\ws_VisualStudio\\KyburzCanTool\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAASwBQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T15:10:44.708Z"
+              "WhenOpened": "2025-12-07T15:10:44.708Z",
+              "EditorCaption": ""
             }
           ]
         }
